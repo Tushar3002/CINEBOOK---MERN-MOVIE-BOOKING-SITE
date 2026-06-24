@@ -62,9 +62,23 @@ export default function MovieDetails() {
     );
   };
 
-  const filteredShows = shows.filter(s =>
-  isSameDay(new Date(s.showTime), selectedDate)
-);
+  const now = new Date();
+
+const filteredShows = shows.filter(s => {
+  const showDate = new Date(s.showTime);
+
+  if (!isSameDay(showDate, selectedDate)) return false;
+
+
+  const isToday = isSameDay(selectedDate, now);
+
+  if (isToday) {
+    return showDate > now; // only future shows
+  }
+
+  return true;
+});
+
 
 
   return (

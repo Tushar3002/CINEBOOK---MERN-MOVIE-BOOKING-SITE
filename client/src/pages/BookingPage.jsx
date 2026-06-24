@@ -84,7 +84,14 @@ export default function BookingPage() {
 
             <SeatLegend />
             <Screen />
-
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center", // 🔥 centers horizontally
+                marginTop: 20
+              }}
+            >
             {rows.map(row => (
               <div
                 key={row}
@@ -127,6 +134,7 @@ export default function BookingPage() {
                 })}
               </div>
             ))}
+            </div>
           </div>
 
           {/* RIGHT SIDE */}

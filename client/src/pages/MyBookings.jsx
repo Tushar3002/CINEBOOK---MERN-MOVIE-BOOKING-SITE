@@ -41,6 +41,9 @@ export default function MyBookings() {
           const show = b.show; // may be null
           const movie = show?.movie;
 
+          const showTime = show ? new Date(show.showTime) : null;
+          const now = new Date();
+          const hasStarted = showTime ? now >= showTime : false;
           return (
             <div
               key={b._id}
@@ -137,7 +140,7 @@ export default function MyBookings() {
                     {b.status.toUpperCase()}
                   </span>
 
-                  {b.status === "confirmed" && show && (
+                  {b.status === "confirmed" && show && !hasStarted && (
                     <button
                       onClick={async () => {
                         if (!window.confirm("Cancel this booking?")) return;

@@ -63,7 +63,8 @@ const user = await User.findById(req.user.id);
 
 const movieTitle =
   booking.show?.movie?.title || "Movie unavailable";
-
+console.log("SHOW OBJECT 👉", booking.show);
+console.log("LOCATION 👉", booking.show.location);
 await sendEmail({
   to: user.email,          
   subject: "🎟 CineBook Ticket Confirmed",
@@ -72,6 +73,7 @@ await sendEmail({
 
     <p><strong>Movie:</strong> ${movieTitle}</p>
     <p><strong>Theatre:</strong> ${booking.show.theatreName}</p>
+    <p><strong>Screen:</strong> ${booking.show.location || "N/A"}</p>
     <p><strong>Show Time:</strong> ${new Date(
       booking.show.showTime
     ).toLocaleString()}</p>
@@ -183,6 +185,8 @@ router.put("/cancel/:id", auth, async (req, res) => {
         html: `
           <h2>Booking Cancelled ❌</h2>
           <p><strong>Movie:</strong> ${movieTitle}</p>
+          <p><strong>Theatre:</strong> ${booking.show?.theatreName || "N/A"}</p>
+          <p><strong>Screen:</strong> ${booking.show?.location || "N/A"}</p>
           <p><strong>Show Time:</strong> ${showTime}</p>
           <p><strong>Seats:</strong> ${booking.seats.join(", ")}</p>
           <p><strong>Amount:</strong> ₹${booking.totalAmount}</p>
@@ -262,6 +266,7 @@ router.post("/confirm", auth, async (req, res) => {
           <h2>Booking Confirmed 🎬</h2>
           <p><strong>Movie:</strong> ${booking.show.movie.title}</p>
           <p><strong>Theatre:</strong> ${booking.show.theatreName}</p>
+          <p><strong>Screen:</strong> ${booking.show.location || "N/A"}</p>
           <p><strong>Show Time:</strong> ${new Date(
             booking.show.showTime
           ).toLocaleString()}</p>

@@ -20,7 +20,7 @@ export default function AdminDashboard() {
 
         {/* HEADER */}
         <div style={{ marginBottom: 30 }}>
-          <h2 style={{ margin: 0 }}>📊 Admin Dashboard</h2>
+          <h2 style={{ margin: 0 }}>Dashboard</h2>
           <p style={{ color: "#666", marginTop: 6 }}>
             Overview of CineBook activity
           </p>
@@ -36,7 +36,7 @@ export default function AdminDashboard() {
           }}
         >
           <StatCard title="Movies" value={data.totalMovies} color="#6a11cb" />
-          <StatCard title="Shows" value={data.totalShows} color="#2575fc" />
+          {/* <StatCard title="Shows" value={data.totalShows} color="#2575fc" /> */}
           <StatCard title="Bookings" value={data.totalBookings} color="#11998e" />
           <StatCard
             title="Revenue"
